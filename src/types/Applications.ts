@@ -1,0 +1,16 @@
+export type TApplications = {
+  number: string,
+  pharmacyId: string,
+  pharmacyAddress: string,
+  creationDate: string,
+  creationTime: string,
+  priority: 'Низкий' | 'Средний' | 'Высокий' | 'Критич.',
+  title: string,
+  category: string,
+  specialist: string,
+  reactionStatus: 'accepted' | 'pending',
+  reactionTime: string,
+  resolutionStatus: 'accepted' | 'pending' | 'returned' | 'empty',
+  resolutionTime: string,
+  status: 'new' | 'rejected' | 'inspection' | 'atWork' | 'waiting' | 'done' | 'closed',
+}
