@@ -13,4 +13,5 @@ export type TApplications = {
   resolutionStatus: 'accepted' | 'pending' | 'returned' | 'empty',
   resolutionTime: string,
   status: 'new' | 'rejected' | 'inspection' | 'atWork' | 'waiting' | 'done' | 'closed',
+  isMy: boolean,
 }

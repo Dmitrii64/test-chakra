@@ -8,12 +8,15 @@ const config = defineConfig({
           primary: { value: "#1C1C1C" },
           secondary: { value: "#B0B0B0" },
           white: { value: "#F1F1F1" },
-          placeholder: { value: "#ABABAB" }
+          placeholder: { value: "#ABABAB" },
+          green: { value: "#0E7411" },
+          red: { value: "#B93C3C" },
         },
         bg: {
           primary: { value: "#F1F1F1" },
           black: { value: "#1C1C1C" },
-          white: { value: "#FFFFFF" }
+          white: { value: "#FFFFFF" },
+          red: { value: "#B93C3C" },
         },
         statusBg: {
           new: { value: "#F0CDFA" },
@@ -24,6 +27,7 @@ const config = defineConfig({
         },
         borderColor: {
           primary: { value: "#D9E1EC" },
+          select: { value: "#B0B0B0" }
         }
       },
       spacing: {

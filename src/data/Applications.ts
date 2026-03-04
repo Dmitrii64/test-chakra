@@ -17,6 +17,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'empty',
     resolutionTime: '',
     status: 'new',
+    isMy: true
   },
   {
     number: 'ХЛ-0002',
@@ -33,6 +34,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'pending',
     resolutionTime: '01:35:34',
     status: 'atWork',
+    isMy: false
   },
   {
     number: 'КН-0002',
@@ -49,6 +51,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'accepted',
     resolutionTime: '02:30:17',
     status: 'done',
+    isMy: true
   },
   {
     number: 'ИЗ-0002',
@@ -65,6 +68,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'accepted',
     resolutionTime: '02:30:17',
     status: 'done',
+    isMy: false
   },
   {
     number: 'ПО-0002',
@@ -81,6 +85,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'accepted',
     resolutionTime: '02:30:17',
     status: 'closed',
+    isMy: true
   },
   {
     number: 'ИТ-0002',
@@ -97,6 +102,7 @@ export const applications: TApplications[] = [
     resolutionStatus: 'accepted',
     resolutionTime: '02:30:17',
     status: 'closed',
+    isMy: false
   },
   {
     number: 'СА-0002',
@@ -113,5 +119,6 @@ export const applications: TApplications[] = [
     resolutionStatus: 'returned',
     resolutionTime: '02:30:17',
     status: 'done',
+    isMy: true
   },
 ]

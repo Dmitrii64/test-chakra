@@ -1,63 +1,63 @@
 import type { TMenuItems } from "../../../types/MenuItems"
-import{Flex, Link, Menu} from '@chakra-ui/react'
+import { Flex, Menu, Image } from '@chakra-ui/react'
+import { Link, useLocation } from "react-router-dom"
+import { icons } from "../../../assets/icons"
 
 type TMenuProps = {
   menuItems: TMenuItems[],
-  activeMenuItem: string,
-  setActiveMenuItem: (value: string) => void,
+  activeMenuItem?: string,
+  setActiveMenuItem?: (value: string) => void,
 }
 
-export const MenuNavigation = ({ menuItems, activeMenuItem, setActiveMenuItem }: TMenuProps) => {
+const isLinkActive = (link: string | undefined, pathname: string): boolean => {
+  if (!link) return false
+  if (link === '/') return pathname === '/'
+  return pathname.startsWith(link)
+}
+
+export const MenuNavigation = ({ menuItems, setActiveMenuItem }: TMenuProps) => {
+  const { pathname } = useLocation()
+
   return (
-    // <ul>
-    //   {menuItems.map((menuItem) => (
-    //     <li key={menuItem.title}>
-    //       {menuItem.link ?
-    //         <a href={menuItem.link} onClick={() => setActiveMenuItem(menuItem.title)}>
-    //           {menuItem.title}
-    //         </a> :
-    //         <span>{menuItem.title}</span>
-    //       }
-    //       {menuItem.children &&
-    //         <ul>
-    //           {menuItem.children.map((child) => (
-    //             <li key={child.title}>
-    //               <a href={child.link} onClick={() => setActiveMenuItem(child.title)}>
-    //                 {child.title}
-    //               </a>
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       }
-    //     </li>
-    //   ))}
-    // </ul>
     <Flex gap='14px'>
-      {menuItems.map((menuItem) => (
-        <Flex key={menuItem.title}>
-          {menuItem.link ?
-            <Link href={menuItem.link} onClick={() => setActiveMenuItem(menuItem.title)}>
-              {menuItem.title}
-            </Link> :
-            <Menu.Root>
-              <Menu.Trigger p={'0 0 0 21px'}>
+      {menuItems.map((menuItem) => {
+        const isActive = menuItem.link ? isLinkActive(menuItem.link, pathname) : menuItem.children?.some(child => isLinkActive(child.link, pathname))
+
+        return (
+          <Flex key={menuItem.title} color={isActive ? 'font.primary' : 'font.secondary'}>
+            {menuItem.link ?
+              <Link to={menuItem.link} onClick={() => setActiveMenuItem?.(menuItem.title)} color={isActive ? 'font.primary' : 'font.secondary'}>
                 {menuItem.title}
-              </Menu.Trigger>
-              <Menu.Positioner>
-                <Menu.Content>
-                  {menuItem.children && menuItem.children.map((child) => (
-                    <Menu.Item key={child.title} value={child.title}>
-                      <Link href={child.link} onClick={() => setActiveMenuItem(child.title)}>
-                        {child.title}
-                      </Link>
-                    </Menu.Item>
-                  ))}
-                </Menu.Content>
-              </Menu.Positioner>
-            </Menu.Root>
-          }
-        </Flex>
-      ))}
+              </Link> :
+              <Menu.Root>
+                <Menu.Trigger p={'0 0 0 21px'}
+                  height='fit-content'
+                  color={isActive ? 'font.primary' : 'font.secondary'}
+                  display='flex' alignItems='center' gap="4px">
+                  {menuItem.title}
+                  <Image src={icons.submenu} alt="submenu" pointerEvents={"none"} />
+                </Menu.Trigger>
+                <Menu.Positioner>
+                  <Menu.Content>
+                    {menuItem.children && menuItem.children.map((child) => {
+                      const isChildActive = isLinkActive(child.link, pathname)
+                      return (
+                        <Menu.Item key={child.title} value={child.title} color={isChildActive ? 'font.primary' : 'font.secondary'}>
+                          <Link to={child.link || '/'}
+                            onClick={() => setActiveMenuItem?.(child.title)}
+                            color={isChildActive ? 'font.primary' : 'font.secondary'}>
+                            {child.title}
+                          </Link>
+                        </Menu.Item>
+                      )
+                    })}
+                  </Menu.Content>
+                </Menu.Positioner>
+              </Menu.Root>
+            }
+          </Flex>
+        )
+      })}
     </Flex>
   )
 }

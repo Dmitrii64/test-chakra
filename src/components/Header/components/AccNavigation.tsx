@@ -1,11 +1,31 @@
-import { Button, Flex, Image } from "@chakra-ui/react"
-import userIcon from "../../../assets/icons/menu/user.png"
+import { Flex, Avatar, Box, Badge } from "@chakra-ui/react"
+import { MyButton } from "../../UI/MyButton"
 
 export const AccNavigation = () => {
   return (
-    <Flex gap='27px'>
-      <Image src={userIcon} alt="User" />
-      <Button p='buttonsPadding.huge' bg='bg.primary' color='font.primary' borderRadius='4px' border='1px solid' borderColor='borderColor.primary'>Выйти</Button>
+    <Flex gap='27px' alignItems='center'>
+      <Box position='relative' height='36px'>
+        <Avatar.Root width='36px' height='36px'>
+          <Avatar.Fallback name='User' />
+          <Avatar.Image src='/user.png' />
+        </Avatar.Root>
+        <Badge
+          position="absolute"
+          bottom="-4px"
+          right="-9px"
+          width="20px"
+          height="20px"
+          bg="bg.red"
+          color="font.white"
+          borderRadius="full"
+          fontSize="13px"
+          display="flex"
+          justifyContent="center"
+        >
+          2
+        </Badge>
+      </Box>
+      <MyButton text='Выйти' textColor="primary" background='primary' size='huge' icon='exit' />
     </Flex>
   )
 }
