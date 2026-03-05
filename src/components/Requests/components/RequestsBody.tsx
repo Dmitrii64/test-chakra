@@ -1,14 +1,14 @@
 import { Table, Badge, Flex, Text, Image } from "@chakra-ui/react"
-import type { TApplications } from "../../../types/Applications"
+import type { TRequests } from "../../../types/Requests"
 import { icons } from "../../../assets/icons"
 
 interface RequestsBodyProps {
-  requests: TApplications[]
+  requests: TRequests[]
 }
 
 export const RequestsBody = ({ requests }: RequestsBodyProps) => {
 
-  const requestStatusTitle: Record<TApplications['status'], { text: string; bg: string }> = {
+  const requestStatusTitle: Record<TRequests['status'], { text: string; bg: string }> = {
     new: { text: 'Новая', bg: 'statusBg.new' },
     atWork: { text: 'В работе', bg: 'statusBg.atWork' },
     done: { text: 'Готово', bg: 'statusBg.done' },
@@ -18,14 +18,14 @@ export const RequestsBody = ({ requests }: RequestsBodyProps) => {
     waiting: { text: 'Ожидает запчасти', bg: 'statusBg.waiting' }
   }
 
-  const requestPriorityIcon: Record<TApplications['priority'], string> = {
+  const requestPriorityIcon: Record<TRequests['priority'], string> = {
     'Низкий': icons.low,
     'Средний': icons.medium,
     'Высокий': icons.high,
     'Критич.': icons.critical
   }
 
-  const requestTimeReaction: Record<TApplications['reactionStatus'], { icon: string; color: string }> = {
+  const requestTimeReaction: Record<TRequests['reactionStatus'], { icon: string; color: string }> = {
     'accepted': {
       icon: icons.check,
       color: 'font.green'
@@ -36,7 +36,7 @@ export const RequestsBody = ({ requests }: RequestsBodyProps) => {
     }
   }
 
-  const requestResolutionStatus: Record<TApplications['resolutionStatus'], { icon?: string; color: string }> = {
+  const requestResolutionStatus: Record<TRequests['resolutionStatus'], { icon?: string; color: string }> = {
     'accepted': {
       icon: icons.check,
       color: 'font.green'
@@ -56,12 +56,16 @@ export const RequestsBody = ({ requests }: RequestsBodyProps) => {
 
   return (
     <Table.Body>
-      {requests.map((request: TApplications) => (
+      {requests.map((request: TRequests) => (
         <Table.Row key={request.number} borderBottom='1px solid' borderColor='borderColor.primary' color='font.primary'>
           <Table.Cell p='8px 10px'>{request.number}</Table.Cell>
           <Table.Cell p='8px 10px'>
             <Flex gap='10px' align='center'>
-              <Badge p='1px 3px' bg='bg.primary' borderRadius='4px' fontSize='12px' lineHeight='24px' fontWeight='600' height='20px' letterSpacing='8%' color='font.primary'>
+              <Badge p='1px 3px' bg='bg.primary'
+                borderRadius='4px'
+                fontSize='12px' lineHeight='24px' fontWeight='600'
+                height='20px' letterSpacing='8%' color='font.primary'
+              >
                 {request.pharmacyId}
               </Badge>
               {request.pharmacyAddress}
@@ -81,7 +85,9 @@ export const RequestsBody = ({ requests }: RequestsBodyProps) => {
           </Table.Cell>
           <Table.Cell p='8px 10px'>{request.title}</Table.Cell>
           <Table.Cell p='8px 10px'>{request.category}</Table.Cell>
-          <Table.Cell p='8px 10px'>{request.specialist || <Text color='font.primary' lineHeight='20px' letterSpacing='2%' opacity='0.3'>—</Text>}</Table.Cell>
+          <Table.Cell p='8px 10px'>
+            {request.specialist || <Text color='font.primary' lineHeight='20px' letterSpacing='2%' opacity='0.3'>—</Text>}
+          </Table.Cell>
           <Table.Cell p='8px 10px'>
             <Flex gap='4px' align='center'>
               <Image src={requestTimeReaction[request.reactionStatus].icon} alt="Reaction Status" />
@@ -92,12 +98,19 @@ export const RequestsBody = ({ requests }: RequestsBodyProps) => {
             {request.resolutionStatus !== 'empty' ?
               <Flex gap='4px' align='center'>
                 <Image src={requestResolutionStatus[request.resolutionStatus].icon} alt="Resolution Status" />
-                <Text color={requestResolutionStatus[request.resolutionStatus].color} lineHeight='20px' letterSpacing='2%'>{request.resolutionTime}</Text>
+                <Text color={requestResolutionStatus[request.resolutionStatus].color} lineHeight='20px' letterSpacing='2%'>
+                  {request.resolutionTime}
+                </Text>
               </Flex>
               : <Text color='font.primary' lineHeight='20px' letterSpacing='2%' opacity='0.3'>—</Text>}
           </Table.Cell>
           <Table.Cell p='8px 10px'>
-            <Badge p='2px 6px' bg={requestStatusTitle[request.status].bg} borderRadius='4px' height='24px' fontSize='14px' lineHeight='20px' fontWeight='400' color='font.primary'>
+            <Badge p='2px 6px'
+              bg={requestStatusTitle[request.status].bg}
+              borderRadius='4px' height='24px'
+              fontSize='14px' lineHeight='20px' fontWeight='400'
+              color='font.primary'
+            >
               {requestStatusTitle[request.status].text}
             </Badge>
           </Table.Cell>

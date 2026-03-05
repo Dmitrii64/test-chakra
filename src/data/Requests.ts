@@ -1,7 +1,7 @@
 
-import type { TApplications } from "../types/Applications";
+import type { TRequests } from "../types/Requests";
 
-export const applications: TApplications[] = [
+export const requests: TRequests[] = [
   {
     number: 'КС-0002',
     pharmacyId: '065',

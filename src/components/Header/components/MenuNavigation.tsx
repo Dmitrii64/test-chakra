@@ -24,16 +24,18 @@ export const MenuNavigation = ({ menuItems, setActiveMenuItem }: TMenuProps) => 
         const isActive = menuItem.link ? isLinkActive(menuItem.link, pathname) : menuItem.children?.some(child => isLinkActive(child.link, pathname))
 
         return (
-          <Flex key={menuItem.title} color={isActive ? 'font.primary' : 'font.secondary'}>
+          <Flex key={menuItem.title} color={isActive ? 'font.primary' : 'font.secondary'} alignItems='center'>
             {menuItem.link ?
-              <Link to={menuItem.link} onClick={() => setActiveMenuItem?.(menuItem.title)} color={isActive ? 'font.primary' : 'font.secondary'}>
+              <Link 
+              to={menuItem.link} onClick={() => setActiveMenuItem?.(menuItem.title)} 
+              color={isActive ? 'font.primary' : 'font.secondary'}>
                 {menuItem.title}
               </Link> :
               <Menu.Root>
                 <Menu.Trigger p={'0 0 0 21px'}
                   height='fit-content'
                   color={isActive ? 'font.primary' : 'font.secondary'}
-                  display='flex' alignItems='center' gap="4px">
+                  display='flex' alignItems='center' gap="4px" _hover={{cursor:'pointer'}}>
                   {menuItem.title}
                   <Image src={icons.submenu} alt="submenu" pointerEvents={"none"} />
                 </Menu.Trigger>

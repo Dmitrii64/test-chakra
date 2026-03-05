@@ -25,7 +25,7 @@ export const AccNavigation = () => {
           2
         </Badge>
       </Box>
-      <MyButton text='Выйти' textColor="primary" background='primary' size='huge' icon='exit' />
+      <MyButton display={{base:'none', md:'flex'}} text='Выйти' textColor="primary" background='primary' size='huge' icon='exit' />
     </Flex>
   )
 }

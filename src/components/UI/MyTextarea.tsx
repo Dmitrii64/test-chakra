@@ -16,6 +16,7 @@ export const MyTextarea = ({ label, placeholder, height, mb, value, onChange }: 
         {label}
       </Field.Label>
       <Textarea
+        fontSize={{base:'12px', md:'14px'}}
         placeholder={placeholder}
         resize='none'
         p='13px 16px'

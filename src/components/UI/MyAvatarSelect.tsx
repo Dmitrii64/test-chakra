@@ -5,7 +5,8 @@ import {
   createListCollection,
   useSelectContext,
   Text,
-  Image
+  Image,
+  Flex
 } from "@chakra-ui/react"
 import { icons } from "../../assets/icons"
 
@@ -28,8 +29,10 @@ const SelectValue = ({ placeholder }: { placeholder: string }) => {
           <Avatar.Image src={icon} alt={title} />
           <Avatar.Fallback name={title} />
         </Avatar.Root>
-        <Text fontSize='12px' color='font.primary' fontWeight={500}>{title}</Text>
-        <Text fontSize='12px' color='font.placeholder' fontWeight={400}>{description}</Text>
+        <Flex flexWrap='wrap'>
+          <Text fontSize='12px' color='font.primary' fontWeight={500}>{title}&nbsp;</Text>
+          <Text fontSize='12px' color='font.placeholder' fontWeight={400}>{description}</Text>
+        </Flex>
       </HStack>
     </Select.ValueText>
   )
@@ -56,7 +59,7 @@ export const MyAvatarSelect = ({ label, options, value, onChange }: TAvatarSelec
         {label}
       </Select.Label>
       <Select.Control>
-        <Select.Trigger p='0 50px 0 16px' height={'40px'} borderRadius='8px' borderColor='borderColor.select'>
+        <Select.Trigger p='0 50px 0 16px' height={{base:'46px', md:'40px'}} borderRadius='8px' borderColor='borderColor.select'>
           <SelectValue placeholder={""} />
         </Select.Trigger>
         <Image src={icons.options} alt="options" position='absolute' right='16px' top='50%' transform='translateY(-50%)' pointerEvents={"none"} />
@@ -69,8 +72,10 @@ export const MyAvatarSelect = ({ label, options, value, onChange }: TAvatarSelec
                 <Avatar.Image src={item.icon} alt={item.title} />
                 <Avatar.Fallback name={item.title} />
               </Avatar.Root>
-              <Text fontSize='12px' color='font.primary' fontWeight={500}>{item.title}</Text>
-              <Text fontSize='12px' color='font.placeholder' fontWeight={400}>{item.description}</Text>
+              <Flex flexWrap='wrap'>
+                <Text fontSize='12px' color='font.primary' fontWeight={500}>{item.title}&nbsp;</Text>
+                <Text fontSize='12px' color='font.placeholder' fontWeight={400}>{item.description}</Text>
+              </Flex>
               <Select.ItemIndicator />
             </Select.Item>
           ))}

@@ -21,7 +21,7 @@ const config = defineConfig({
         statusBg: {
           new: { value: "#F0CDFA" },
           atWork: { value: "#FFEBB3" },
-          atWorkMobile: { value: "#FFFEB3" },
+          atWorkMobile: { value: "rgb(255, 254, 179)" },
           done: { value: "#A2E3A4" },
           closed: { value: "#F1F1F1" },
         },

@@ -1,4 +1,4 @@
-export type TApplications = {
+export type TRequests = {
   number: string,
   pharmacyId: string,
   pharmacyAddress: string,

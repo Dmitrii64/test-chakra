@@ -5,6 +5,7 @@ import filterBlack from './icons/menu/filter-black.svg'
 import filterWhite from './icons/menu/filter-white.svg'
 import newIcon from './icons/menu/new.svg'
 import search from './icons/menu/search.svg'
+import mobileSearch from './icons/menu/mobile-search.svg'
 import critical from './icons/priorites/critical.svg'
 import high from './icons/priorites/high.svg'
 import medium from './icons/priorites/medium.svg'
@@ -15,7 +16,9 @@ import error from './icons/timeStatuses/error.svg'
 import options from './icons/menu/options.svg'
 import close from './icons/menu/close.svg'
 import file from './icons/menu/file.svg'
+import fileMobile from './icons/menu/file-mobile.svg'
 import submenu from './icons/menu/submenu.svg'
+import arrow from './icons/menu/arrow.svg'
 
 export const icons = {
   exit,
@@ -25,6 +28,7 @@ export const icons = {
   filterWhite,
   new: newIcon,
   search,
+  mobileSearch,
   critical,
   high,
   medium,
@@ -35,5 +39,7 @@ export const icons = {
   options,
   close,
   file,
-  submenu
+  fileMobile,
+  submenu,
+  arrow
 }
