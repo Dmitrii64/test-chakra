@@ -27,7 +27,7 @@ export const Requests = ({ isMobile }: { isMobile: boolean }) => {
       />
 
       {filteredRequests.length === 0 ? (
-        <Box p='31px 40px'>
+        <Box p={{base:'50vh 20px', md:'31px 40px'}}>
           <Text color='font.primary' textAlign='center'>
             Нет заявок, соответствующих выбранным фильтрам
           </Text>

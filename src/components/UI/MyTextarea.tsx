@@ -7,9 +7,10 @@ type TTextareaProps = {
   mb?: string,
   value?: string,
   onChange?: (value: string) => void,
+  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void,
 }
 
-export const MyTextarea = ({ label, placeholder, height, mb, value, onChange }: TTextareaProps) => {
+export const MyTextarea = ({ label, placeholder, height, mb, value, onChange, onBlur }: TTextareaProps) => {
   return (
     <Field.Root>
       <Field.Label fontSize='12px' textAlign='left' color='font.primary'>
@@ -26,7 +27,8 @@ export const MyTextarea = ({ label, placeholder, height, mb, value, onChange }: 
         _placeholder={{ color: 'borderColor.select' }}
         mb={mb}
         value={value || ''}
-        onChange={(e) => onChange?.(e.target.value)} />
+        onChange={(e) => onChange?.(e.target.value)}
+        onBlur={onBlur} />
     </Field.Root>
   )
 }

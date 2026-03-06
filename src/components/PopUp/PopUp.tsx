@@ -6,7 +6,7 @@ import { MyTextarea } from "../UI/MyTextarea"
 import { MyFileLoad } from "../UI/MyFileLoad"
 import { MyButton } from "../UI/MyButton"
 import { MyAvatarSelect } from "../UI/MyAvatarSelect"
-import { useState } from "react"
+import { useState, useRef } from "react"
 import type { TFormData } from "../../types/FormData"
 import { MyFileLoadM } from "../UI/MyFileLoadM"
 
@@ -27,17 +27,21 @@ const initialData: TFormData = {
 export const PopUp = ({ closePopup, isMobile }: PopUpProps) => {
   const [formData, setFormData] = useState<TFormData>(initialData)
 
+  const lastEditRef = useRef<string>(new Date().toISOString());
+
   const isFormValid = formData.pharmacy && formData.category && formData.topic && formData.description && formData.priority
 
   const handleCreate = () => {
-    console.log(formData)
+    const dataToSend = { ...formData, lastEdited: lastEditRef.current };
+    console.log(dataToSend)
     closePopup()
     setFormData(initialData)
   }
 
   const handleCancel = () => {
     setFormData(initialData)
-  }
+  };
+
   return (
     <Box position='fixed' top='0' left='0'
       width='100%' height='100%' bg='rgba(0, 0, 0, 0.5)'
@@ -111,7 +115,12 @@ export const PopUp = ({ closePopup, isMobile }: PopUpProps) => {
               placeholder='Дайте заявке краткое название: например, сломался холодильник или не работает кондиционер'
               height='70px' mb='24px'
               value={formData.topic}
-              onChange={(value) => setFormData({ ...formData, topic: value })}
+              onChange={(value) => {
+                setFormData({ ...formData, topic: value });
+              }}
+              onBlur={() => {
+                lastEditRef.current = new Date().toISOString();
+              }}
             />
             <MyAvatarSelect
               label="Приоритет"
@@ -156,7 +165,12 @@ export const PopUp = ({ closePopup, isMobile }: PopUpProps) => {
               }
               height='164px' mb='24px'
               value={formData.description}
-              onChange={(value) => setFormData({ ...formData, description: value })}
+              onChange={(value) => {
+                setFormData({ ...formData, description: value });
+              }}
+              onBlur={() => {
+                lastEditRef.current = new Date().toISOString();
+              }}
             />
             {!isMobile && <MyFileLoad />}
           </Flex>
